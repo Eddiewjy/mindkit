@@ -6,7 +6,7 @@
     "build": "pnpm -r run build",
     "test": "pnpm -r run test",
     "typecheck": "pnpm -r run typecheck",
-    "dev": "pnpm --filter @mindkit/server run dev",
+    "dev": "pnpm --filter @mindkit/server --filter @mindkit/web -r --parallel run dev",
     "dev:demo": "pnpm --filter @mindkit/demo run dev"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
 packages:
   - 'packages/*'
-  - 'stello/packages/*'
-  - 'stello/packages/devtools/web'
+  - 'stello/packages/session'
+  - 'stello/packages/core'

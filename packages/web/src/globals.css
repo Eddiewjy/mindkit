@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--c-primary);
+  --color-primary-light: var(--c-primary-light);
+  --color-primary-dark: var(--c-primary-dark);
+  --color-bg: var(--c-bg);
+  --color-card: var(--c-card);
+  --color-surface: var(--c-surface);
+  --color-muted: var(--c-muted);
+  --color-border: var(--c-border);
+  --color-border-strong: var(--c-border-strong);
+  --color-text: var(--c-text);
+  --color-text-secondary: var(--c-text-secondary);
+  --color-text-muted: var(--c-text-muted);
+  --color-success: var(--c-success);
+  --color-warning: var(--c-warning);
+  --color-error: var(--c-error);
+
+  --font-sans: "Caveat", "FangSong", "仿宋", STFangsong, cursive;
+  --font-hand: "Caveat", "FangSong", "仿宋", STFangsong, cursive;
+  --font-hand-alt: "Patrick Hand", "FangSong", "仿宋", STFangsong, cursive;
+  --font-hand-sm: "Coming Soon", "FangSong", "仿宋", STFangsong, cursive;
+
+  --color-paper: #f7f4ee;
+  --color-ink: #222222;
+  --color-ink-light: rgba(34, 34, 34, 0.5);
+  --color-pencil: rgba(34, 34, 34, 0.32);
+  --color-blue-pen: #3a6bc5;
+  --color-red-pen: #c94a4a;
+  --color-green-hl: #5ba85b;
+  --color-yellow-hl: rgba(255, 230, 100, 0.3);
+  --color-grid-line: rgba(180, 200, 230, 0.2);
+  --color-margin-line: rgba(200, 80, 80, 0.15);
+}
+
+:root {
+  --c-primary: #3a6bc5;
+  --c-primary-light: rgba(58,107,197,0.08);
+  --c-primary-dark: #2d5199;
+  --c-bg: #f7f4ee;
+  --c-card: #faf8f2;
+  --c-surface: #f2efe8;
+  --c-muted: rgba(34,34,34,0.1);
+  --c-border: rgba(42,42,42,0.08);
+  --c-border-strong: rgba(42,42,42,0.15);
+  --c-text: #222222;
+  --c-text-secondary: rgba(34,34,34,0.5);
+  --c-text-muted: rgba(34,34,34,0.32);
+  --c-success: #5ba85b;
+  --c-warning: #d4a017;
+  --c-error: #c94a4a;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#root {
+  height: 100vh;
+}
+
+/* ─── 便签卡片 ─── */
+.sticky-note {
+  position: relative;
+}
+.sticky-note::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 28px 28px;
+  border-color: transparent transparent var(--color-paper) transparent;
+  z-index: 2;
+}
+.sticky-note::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.06) 50%, rgba(0,0,0,0.03) 100%);
+  z-index: 1;
+}
+
+/* 胶带装饰 */
+.tape-top {
+  position: relative;
+}
+.tape-top > .tape {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 64px;
+  height: 18px;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(200,200,200,0.3);
+  border-radius: 1px;
+  z-index: 3;
+  backdrop-filter: blur(1px);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* 极简滚动条 */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: rgba(42, 42, 42, 0.1); border-radius: 2px; }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(42, 42, 42, 0.1) transparent;
+}
+
+/* 纸张噪点纹理 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
